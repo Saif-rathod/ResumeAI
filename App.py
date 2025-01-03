@@ -12,7 +12,15 @@ from pdfminer3.converter import TextConverter
 from Courses import ds_course, web_course, android_course, ios_course, uiux_course, resume_videos, interview_videos
 
 # Load spaCy model
-nlp = spacy.load('en_core_web_sm')
+import spacy
+from spacy.cli import download
+
+try:
+    nlp = spacy.load('en_core_web_sm')
+except OSError:
+    download('en_core_web_sm')
+    nlp = spacy.load('en_core_web_sm')
+#nlp = spacy.load('en_core_web_sm')
 
 class ResumeParser:
     def __init__(self, pdf_path):
