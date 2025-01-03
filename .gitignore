@@ -5,3 +5,4 @@ myenv/
 __pycache__/
 Uploaded_Resumes/
 .codegpt
+venv/
