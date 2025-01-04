@@ -5,7 +5,8 @@ pandas
 spacy
 pafy
 plotly
+numpy
 pymysql
 streamlit-tags
 Pillow
-
+wordcloud

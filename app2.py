@@ -16,11 +16,13 @@ from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 
 # Load spaCy model with error handling
-try:
-    nlp = spacy.load('en_core_web_sm')
-except OSError:
-    spacy.cli.download('en_core_web_sm')
-    nlp = spacy.load('en_core_web_sm')
+# os.environ['SPACY_MODELS'] = os.path.expanduser('~/.local/lib/python3.12/site-packages/en_core_web_sm')
+# try:
+#     nlp = spacy.load('en_core_web_sm')
+# except OSError:
+#     spacy.cli.download('en_core_web_sm')
+
+nlp = spacy.load('en_core_web_sm')
 
 class EnhancedResumeParser:
     def __init__(self, pdf_path):
