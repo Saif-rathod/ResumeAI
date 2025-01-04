@@ -8,3 +8,4 @@ plotly
 pymysql
 streamlit-tags
 Pillow
+en_core_web_sm
