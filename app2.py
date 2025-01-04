@@ -11,7 +11,7 @@ from pdfminer3.pdfinterp import PDFResourceManager, PDFPageInterpreter
 from pdfminer3.converter import TextConverter
 from Courses import ds_course, web_course, android_course, ios_course, uiux_course, resume_videos, interview_videos
 import numpy as np
-import en_core_web_sm
+
 
 from datetime import datetime
 from wordcloud import WordCloud
@@ -19,12 +19,12 @@ import matplotlib.pyplot as plt
 
 # Load spaCy model with error handling
 # os.environ['SPACY_MODELS'] = os.path.expanduser('~/.local/lib/python3.12/site-packages/en_core_web_sm')
-# try:
-#     nlp = spacy.load('en_core_web_sm')
-# except OSError:
-#     spacy.cli.download('en_core_web_sm')
+try:
+    nlp = spacy.load('en_core_web_sm')
+except OSError:
+    spacy.cli.download('en_core_web_sm')
 
-nlp = en_core_web_sm.load()
+nlp = spacy.load("en_core_web_sm")
 
 class EnhancedResumeParser:
     def __init__(self, pdf_path):
