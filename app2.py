@@ -17,20 +17,13 @@ from datetime import datetime
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 
-# Load spaCy model with error handling
-# os.environ['SPACY_MODELS'] = os.path.expanduser('~/.local/lib/python3.12/site-packages/en_core_web_sm')
-try:
-    nlp = spacy.load('en_core_web_sm')
-except OSError:
-    spacy.cli.download('en_core_web_sm')
 
-nlp = spacy.load("en_core_web_sm")
 
 class EnhancedResumeParser:
     def __init__(self, pdf_path):
         self.pdf_path = pdf_path
         self.text = self._extract_text()
-        self.doc = nlp(self.text)
+        # self.doc = nlp(self.text)
         self.sections = self._split_into_sections()
         
     def _extract_text(self):
@@ -85,12 +78,10 @@ class EnhancedResumeParser:
         return phones[0] if phones else None
 
     def get_name(self):
-        first_paragraph = self.text.split('\n')[0]
-        doc = nlp(first_paragraph)
-        for ent in doc.ents:
-            if ent.label_ == "PERSON":
-                return ent.text
-        return None
+        name_pattern = r'\b[A-Z][a-z]*\s[A-Z][a-z]*\b'
+        names = re.findall(name_pattern, self.text)
+        return names[0] if names else None
+
 
     def get_skills(self):
         skills_db = {
@@ -136,16 +127,17 @@ class EnhancedResumeParser:
         return found_skills
 
     def get_education(self):
+        education_keywords = ['bachelor', 'master', 'phd', 'degree', 'university', 
+                            'college', 'diploma', 'certification']
         education = []
-        edu_section = self.sections.get('education', '')
-        if edu_section:
-            doc = nlp(edu_section)
-            for sent in doc.sents:
-                if any(keyword in sent.text.lower() for keyword in [
-                    'bachelor', 'master', 'phd', 'b.tech', 'm.tech', 'b.e', 'm.e',
-                    'diploma', 'degree', 'university', 'college'
-                ]):
-                    education.append(sent.text.strip())
+        
+        lines = self.text.split('\n')
+        for i, line in enumerate(lines):
+            if any(keyword in line.lower() for keyword in education_keywords):
+                # Get the current line and the next line for context
+                edu_info = ' '.join([line.strip(), lines[i+1].strip() if i+1 < len(lines) else '']).strip()
+                education.append(edu_info)
+        
         return education
 
     def get_experience(self):
