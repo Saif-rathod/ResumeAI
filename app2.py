@@ -22,7 +22,7 @@ import matplotlib.pyplot as plt
 # except OSError:
 #     spacy.cli.download('en_core_web_sm')
 
-nlp = spacy.load(f'models\en_core_web_sm\en_core_web_sm-2.3.1')
+nlp = spacy.load('models/en_core_web_sm/en_core_web_sm-2.3.1')
 
 class EnhancedResumeParser:
     def __init__(self, pdf_path):
