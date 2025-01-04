@@ -1,0 +1,12 @@
+echo '[server]' > .streamlit/streamlit_app.toml
+echo 'enableCORS=false' >> .streamlit/streamlit_app.toml
+echo 'enableXsrfProtection=false' >> .streamlit/streamlit_app.toml
+echo '' >> .streamlit/streamlit_app.toml
+echo '[browser]' >> .streamlit/streamlit_app.toml
+echo 'gatherUsageStats = false' >> .streamlit/streamlit_app.toml
+echo '' >> .streamlit/streamlit_app.toml
+echo '[runner]' >> .streamlit/streamlit_app.toml
+echo 'magicEnabled = true' >> .streamlit/streamlit_app.toml
+echo '' >> .streamlit/streamlit_app.toml
+echo '[script]' >> .streamlit/streamlit_app.toml
+echo 'preRunScript = "../setup.sh"' >> .streamlit/streamlit_app.toml
