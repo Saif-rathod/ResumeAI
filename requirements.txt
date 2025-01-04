@@ -4,6 +4,7 @@ streamlit
 pandas
 spacy
 pafy
+en_core_web_sm
 plotly
 numpy
 pymysql
