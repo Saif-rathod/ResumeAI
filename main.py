@@ -25,7 +25,7 @@ nltk.download('maxent_ne_chunker')
 nltk.download('words')
 
 # Load spaCy model
-nlp = spacy.load('en_core_web_sm')
+nlp = spacy.load('models/en_core_web_sm')
 
 class ResumeAnalyzer:
     def __init__(self):
