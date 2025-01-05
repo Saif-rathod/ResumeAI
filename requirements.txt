@@ -3,8 +3,14 @@ pyresparser
 streamlit
 pandas
 spacy
+seaborn
+scikit-learn
 pafy
+nltk
+PyPDF2
+matplotlib
 plotly
+textblob
 numpy
 pymysql
 streamlit-tags
